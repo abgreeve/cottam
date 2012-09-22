@@ -28,8 +28,8 @@ class DB {
     /**
      * 
      * @param string $table  Table name.
-     * @param array $where  Where clause.
-     * @param array $columns  Select columns.
+     * @param array $where  Where clause (not required).
+     * @param array $columns  Select columns (not required).
      * @return An array of arrays.
      */
     function get_records($table, $where, $columns) {

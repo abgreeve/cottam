@@ -13,7 +13,7 @@ function print_object($object) {
  * 
  * @param string $url  url - location starting from webbase.
  * @param string $desc  Information that goes with the url.
- * @param array $params
+ * @param array $params (not required).
  * @return string  a full url.
  */
 function cottam_url($url, $desc, $params) {

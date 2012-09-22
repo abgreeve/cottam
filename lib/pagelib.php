@@ -40,6 +40,14 @@ function print_navigation_menu() {
     echo '</table>';
 }
 
+function print_admin_menu() {
+    echo '<table border="1">';
+    echo '<tr>';
+    echo '<td>' . cottam_url('webpages/index.php', 'Web Pages') . '</td>';
+    echo '<tr>';
+    echo '</table>';
+}
+
 function print_footer() {
     echo '</body>';
     echo '</html>';
