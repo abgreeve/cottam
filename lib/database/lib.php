@@ -30,7 +30,7 @@ class DB {
      * @param string $table  Table name.
      * @param array $where  Where clause (not required).
      * @param array $columns  Select columns (not required).
-     * @return An array of arrays.
+     * @return An array of stdClasses.
      */
     function get_records($table, $where, $columns) {
         if (is_array($columns)) {
@@ -54,9 +54,9 @@ class DB {
         $data = array();
         $i = 0;
         while ($rawdata = mysql_fetch_array($result, MYSQLI_ASSOC)) {
-            $data->$i = array();
+            $data->$i = new stdClass();
             foreach ($rawdata as $key => $row) {
-                $data[$i][$key] = $row;
+                $data[$i]->$key = $row;
             }
             $i++;
         }

@@ -26,18 +26,9 @@ function print_navigation_menu() {
     require_once 'lib/general.php';
     $DB = new DB();
     $DB->db_connect();
-    $data = $DB->get_records('navigation', '', array('name'));
-    echo '<table border="1">';
-    foreach($data as $stuff) {
-        echo '<tr>';
-        foreach ($stuff as $key => $thing) {
-            echo '<td>';
-            echo cottam_url('http://localhost/cottam-new/', $thing);
-            echo '</td>';
-        }
-        echo '</tr>';
-    }
-    echo '</table>';
+    $data = $DB->get_records('plant', '', array('plant_id', 'botanical_name', 'colour_id'));
+//    print_object($data);
+    echo atable($data);
 }
 
 function print_admin_menu() {
@@ -52,4 +43,27 @@ function print_footer() {
     echo '</body>';
     echo '</html>';
 }
+
+function atable($data) {
+    $table = '<table border="1">';
+    $table .= '<tr>';
+    foreach ($data[0] as $title => $unused) {
+        $table .= '<th>';
+        $table .= $title;
+        $table .= '</th>';
+    }
+    $table .= '</tr>';
+    foreach($data as $stuff) {
+        $table .= '<tr>';
+        foreach ($stuff as $key => $thing) {
+            $table .= '<td>';
+            $table .= $thing;
+            $table .= '</td>';
+        }
+        $table .= '</tr>';
+    }
+    $table .= '</table>';
+    return $table;
+}
+
 ?>
