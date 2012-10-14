@@ -32,7 +32,7 @@ class DB {
      * @param array $columns  Select columns (not required).
      * @return An array of stdClasses.
      */
-    function get_records($table, $where, $columns) {
+    function get_records($table, $where = null, $columns = null) {
         if (is_array($columns)) {
             $fields = implode(',', $columns);
             $sql = 'SELECT ' . $fields . ' FROM ' . $table;
@@ -54,7 +54,7 @@ class DB {
         $data = array();
         $i = 0;
         while ($rawdata = mysql_fetch_array($result, MYSQLI_ASSOC)) {
-            $data->$i = new stdClass();
+            $data[$i] = new stdClass();
             foreach ($rawdata as $key => $row) {
                 $data[$i]->$key = $row;
             }

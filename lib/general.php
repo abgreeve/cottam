@@ -16,7 +16,7 @@ function print_object($object) {
  * @param array $params (not required).
  * @return string  a full url.
  */
-function cottam_url($url, $desc, $params) {
+function cottam_url($url, $desc = '', $params = null) {
     $final_url = '<a href="' . $url . '">' . $desc . '</a>'; 
     return $final_url;
 }

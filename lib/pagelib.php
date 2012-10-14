@@ -22,13 +22,13 @@ function set_title($title) {
 }
 
 function print_navigation_menu() {
-    require_once 'lib/database/lib.php';
-    require_once 'lib/general.php';
+    require_once '/var/www/cottam-new/lib/database/lib.php';
+    require_once '/var/www/cottam-new/lib/general.php';
     $DB = new DB();
     $DB->db_connect();
-    $data = $DB->get_records('plant', '', array('plant_id', 'botanical_name', 'colour_id'));
-//    print_object($data);
-    echo atable($data);
+    $data = $DB->get_records('navigation');
+    print_object($data);
+//    echo atable($data);
 }
 
 function print_admin_menu() {
@@ -37,6 +37,9 @@ function print_admin_menu() {
     echo '<td>' . cottam_url('webpages/index.php', 'Web Pages') . '</td>';
     echo '<tr>';
     echo '</table>';
+//    $funk = array('0' => 'Hi', '1' => 'yeah');
+//    print_object($funk);
+//    echo atable($funk,'hi');
 }
 
 function print_footer() {
@@ -44,18 +47,26 @@ function print_footer() {
     echo '</html>';
 }
 
-function atable($data) {
+function atable($data, $headers) {
     $table = '<table border="1">';
     $table .= '<tr>';
-    foreach ($data[0] as $title => $unused) {
-        $table .= '<th>';
-        $table .= $title;
-        $table .= '</th>';
+    if (!empty($headers)) {
+        foreach ($headers as $title) {
+            $table .= '<th>';
+            $table .= $title;
+            $table .= '</th>';
+        }
+    } else {
+        foreach ($data[0] as $title => $unused) {
+            $table .= '<th>';
+            $table .= $title;
+            $table .= '</th>';
+        }
     }
     $table .= '</tr>';
     foreach($data as $stuff) {
         $table .= '<tr>';
-        foreach ($stuff as $key => $thing) {
+        foreach ($stuff as $thing) {
             $table .= '<td>';
             $table .= $thing;
             $table .= '</td>';
